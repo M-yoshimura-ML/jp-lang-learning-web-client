@@ -13,7 +13,7 @@ export default function CreateLesson() {
 
   useEffect(()=> {
     const authToken = localStorage.getItem('authToken')
-    console.log('authToken',authToken);
+    // console.log('authToken',authToken);
     if(authToken == null){
       router.push('/');
     } else {
