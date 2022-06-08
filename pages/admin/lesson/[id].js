@@ -142,9 +142,9 @@ export default function UpdateLessonContent({ lesson }) {
     }
 
     return (
-        <Layout title={lesson.id}>
-          <div className="create lesson"> 
-            <p className='mb-4'>this is admin update lesson page</p>
+        <Layout title='Admin Update Lesson'>
+          <div className="Admin Update lesson"> 
+            <p className='mb-4 mr-4 ml-4 px-1 py-2 w-full text-xl font-bold'>Admin Update Lesson</p>
             <p className='m-4'>
                 {"ID : "}
                 {lesson.id}
@@ -234,17 +234,17 @@ export default function UpdateLessonContent({ lesson }) {
                                     <svg
                                         onClick={handleAddInput}
                                         content-type="HEADER"
-                                        className="w-10 h-10 mt-2 cursor-pointer hover:bg-blue-300"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg"
+                                        className="w-10 h-10 mt-2 mr-4 cursor-pointer hover:bg-blue-300"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
                                     >
                                         <path
                                             strokeLinecap="round"
                                             strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
                                         />
                                     </svg>
                                     {/* textarea add button */}
@@ -252,7 +252,7 @@ export default function UpdateLessonContent({ lesson }) {
                                         onClick={handleAddInput}
                                         content-type="BODY"
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className="h-10 w-10 mt-2 hover:cursor-pointer hover:bg-blue-300"
+                                        className="h-10 w-10 mt-2 mr-2 hover:cursor-pointer hover:bg-blue-300"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"

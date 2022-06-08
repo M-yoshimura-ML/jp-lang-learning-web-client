@@ -4,32 +4,29 @@ import Layout from "../../components/Layout";
 import ReactAudioPlayer from "react-audio-player";
 import { uploadFile } from "../api/lesson";
 import Image from "next/image";
-import jwtDecode from "jwt-decode"
-
+import jwtDecode from "jwt-decode";
 
 export default function CreateLesson() {
-  
   const router = useRouter();
 
-  useEffect(()=> {
-    const authToken = localStorage.getItem('authToken')
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
     // console.log('authToken',authToken);
-    if(authToken == null){
-      router.push('/');
+    if (authToken == null) {
+      router.push("/");
     } else {
-      const admin = jwtDecode(authToken)['isSuperuser'];
-      if(!admin) {
-        router.push('/');
+      const admin = jwtDecode(authToken)["isSuperuser"];
+      if (!admin) {
+        router.push("/");
       }
     }
-  },[])
+  }, []);
 
   const [lessonList, setLessonList] = useState({
     title: "",
     description: "",
     level: 1,
   });
-
 
   const [inputList, setInputList] = useState([
     {
@@ -60,7 +57,7 @@ export default function CreateLesson() {
     if (event.target.files[0]) {
       const file = event.target.files[0];
       const type = event.currentTarget.getAttribute("content-type");
-      
+
       let uploadedFileUrl = "";
       try {
         uploadedFileUrl = await uploadFile(type, file);
@@ -99,43 +96,42 @@ export default function CreateLesson() {
     setInputList(list);
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const lessonContentOj2 = { ...lessonList, contents: inputList };
-   
+
     console.log(JSON.stringify(lessonContentOj2, null, 2));
 
-    const authToken = localStorage.getItem('authToken')
+    const authToken = localStorage.getItem("authToken");
     const data = JSON.parse(authToken);
     console.log(data.access);
-    
+
     await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/lesson/`, {
-        method: 'POST',
-        body: JSON.stringify(lessonContentOj2, null, 2),
-        headers: {
-            'Content-type': 'application/json',
-            // Authorization: `JWT ${cookie.get('jwt')}`,
-            Authorization: `Bearer ${data.access}`
-        },
+      method: "POST",
+      body: JSON.stringify(lessonContentOj2, null, 2),
+      headers: {
+        "Content-type": "application/json",
+        // Authorization: `JWT ${cookie.get('jwt')}`,
+        Authorization: `Bearer ${data.access}`,
+      },
     }).then((res) => {
-        if (res.status === 401) {
-          alert("JWT Token is not valid.");
-        } else if( res.status ===400) {
-          alert("filled texts have something wrong.");
-        } else {
-          alert("success to register");
-          router.push('/admin/lesson-list');
-        }
+      if (res.status === 401) {
+        alert("JWT Token is not valid.");
+      } else if (res.status === 400) {
+        alert("filled texts have something wrong.");
+      } else {
+        alert("success to register");
+        router.push("/admin/lesson-list");
+      }
     });
   };
 
-
   return (
-    <Layout title="create lesson">
-      <div className="create lesson">
-        <div className="mb-5 mr-4 ml-4 px-1 py-2">
-          this is create lesson page
+    <Layout title="Admin Create Lesson">
+      <div className="Admin Create Lesson">
+        <div className="mb-5 mr-4 ml-4 px-1 py-2 w-full text-xl font-bold">
+          Admin Create Lesson
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-5 mr-4 ml-4 px-1 py-2">
@@ -222,17 +218,17 @@ export default function CreateLesson() {
                     <svg
                       onClick={handleAddInput}
                       content-type="HEADER"
-                      className="w-10 h-10 mt-2 cursor-pointer hover:bg-blue-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
+                      className="w-10 h-10 mt-2 mr-4 cursor-pointer hover:bg-blue-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
                     >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
                       />
                     </svg>
                     {/* textarea add button */}
@@ -240,7 +236,7 @@ export default function CreateLesson() {
                       onClick={handleAddInput}
                       content-type="BODY"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-10 w-10 mt-2 hover:cursor-pointer hover:bg-blue-300"
+                      className="h-10 w-10 mt-2 mr-2 hover:cursor-pointer hover:bg-blue-300"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -269,7 +265,12 @@ export default function CreateLesson() {
                         />
                       </svg>
                     </label>
-                    <input id="file-input" className="hidden" type="file" accept="image/*" name="myImage"
+                    <input
+                      id="file-input"
+                      className="hidden"
+                      type="file"
+                      accept="image/*"
+                      name="myImage"
                       onChange={uploadFileToStorage}
                       content-type="IMAGE"
                     />
@@ -290,7 +291,12 @@ export default function CreateLesson() {
                         />
                       </svg>
                     </label>
-                    <input id="audio-input" className="hidden" type="file" accept="audio/*" name="myAudio"
+                    <input
+                      id="audio-input"
+                      className="hidden"
+                      type="file"
+                      accept="audio/*"
+                      name="myAudio"
                       onChange={uploadFileToStorage}
                       content-type="AUDIO"
                     />

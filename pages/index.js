@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <Layout title='TOP'>
-      <div className='mb-10'>TOP page</div>
+      <div className='mt-4 mb-10 text-xl font-bold'>Welcome to JP Lang Learning</div>
       {user && <p className='mb-10'>hello {user.username}</p>}
       <div className='mb-12'>
         <div className='mb-5 mr-4 ml-4 px-1 py-2'>

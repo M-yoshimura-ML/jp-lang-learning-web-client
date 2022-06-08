@@ -25,7 +25,7 @@ export default function LessonContent({ lesson }) {
     }
 
     return (
-        <Layout title={lesson.id}>
+        <Layout title="lesson" >
             <p className='m-4'>
                 {"level : "}
                 {lesson.level}
