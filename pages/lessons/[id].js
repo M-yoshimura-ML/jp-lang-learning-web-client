@@ -36,30 +36,28 @@ export default function LessonContent({ lesson }) {
             <div className="mb-5 mr-4 ml-4 px-1 py-2">
                 {lbToBr(lesson.description)}
             </div>   
-            <div className='mb-12'>
-                {lesson.contents.map((item, i) => {
-                    return (
-                        <div key={i} className="mb-5">
-                            <div className="flex justify-center items-center mb-5 mr-4 ml-4 px-1 py-2  max-w-screen-lg">
-                                {item.type ==="HEADER" && (
-                                    <p className="m-2 px-1 py-2 w-full text-white">{item.content}</p>
-                                )}
-                                {item.type ==="BODY" && (
-                                    <p className="m-2 px-1 py-2 w-full text-white">
-                                       {lbToBr(item.content)}
-                                    </p>
-                                )}
-                                {item.type ==="IMAGE" && (
-                                    <img className="flex w-4/5 h-auto" src={item.content} />
-                                )}
-                                {item.type ==="AUDIO" && (
-                                    <ReactAudioPlayer src={item.content} controls />
-                                )}
-                            </div>
+            {lesson.contents.map((item, i) => {
+                return (
+                    <div key={i} className="contents">
+                        <div className="mb-5 mr-4 ml-4 px-1 py-2">
+                            {item.type ==="HEADER" && (
+                                <p className="m-2 px-1 py-2 text-white">{item.content}</p>
+                            )}
+                            {item.type ==="BODY" && (
+                                <p className="m-2 px-1 py-2 text-white">
+                                    {lbToBr(item.content)}
+                                </p>
+                            )}
+                            {item.type ==="IMAGE" && (
+                                <img className="flex h-auto" src={item.content} />
+                            )}
+                            {item.type ==="AUDIO" && (
+                                <ReactAudioPlayer src={item.content} controls />
+                            )}
                         </div>
-                    )
-                })}
-            </div>
+                    </div>
+                )
+            })}
             <Link href='/lesson-list'>
                 <div className='flex cursor-pointer mt-12'>
                     <svg 
@@ -94,6 +92,7 @@ export async function getStaticPaths () {
 
 export async function getStaticProps ({ params }) {
     const {lesson: lesson} = await getLessonData(params.id);
+    // console.log(lesson);
     return {
         props: {
             lesson,
