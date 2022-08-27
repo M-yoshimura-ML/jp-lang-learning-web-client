@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Architecture:
 
-## Getting Started
+### Frameworks & Library:
 
-First, run the development server:
+- Javascript Framework: `Nextjs 12.1.6`
+- Javascript Library: `React 18.1.0`
+- CSS Framework: `Tailwindcss 3.0.24`
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### System Requirements:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Firebase >=9.8.1
+- node/npm latest stable
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+# Getting Started
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+0. Need web server
+   see `https://github.com/M-yoshimura-ML/jp-lang-learning-web-server`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Clone Repository
 
-## Learn More
+   `git clone https://github.com/M-yoshimura-ML/jp-lang-learning-web-client.git`
 
-To learn more about Next.js, take a look at the following resources:
+2. Install package dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   `npm install`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Create storage in your Firebase & set credential in your .env
 
-## Deploy on Vercel
+4. Begin Local Web client
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   `npm run dev`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+5. Open your browser `http://127.0.0.1:3000/` or `http://localhost:3000/`
